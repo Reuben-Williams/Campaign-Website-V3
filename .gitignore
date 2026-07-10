@@ -1,0 +1,11 @@
+.next/
+out/
+node_modules/
+.env
+.env*.local
+*.tsbuildinfo
+next-dev.log
+next-dev.err.log
+asw_carmenmorales/
+morales4assembly/
+stitch_campaign_command_suite/
