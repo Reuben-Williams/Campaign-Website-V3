@@ -46,6 +46,12 @@ test("future Supabase and deployment environment variables are documented", asyn
   assert.match(envExample, /NEXT_PUBLIC_SITE_URL=/);
 });
 
+test("shared navigation includes a dedicated home link first", async () => {
+  const siteContent = await readProjectFile("content/site.ts");
+
+  assert.match(siteContent, /export const navItems = \[\s*\{\s*label:\s*["']Home["'],\s*href:\s*["']\/["']\s*\}/s);
+});
+
 test("source files use local campaign images instead of remote placeholders", async () => {
   const sourceDirs = ["app", "components", "content", "lib"];
   const files = [];
