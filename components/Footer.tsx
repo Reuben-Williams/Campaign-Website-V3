@@ -1,22 +1,23 @@
+"use client";
+
 import Link from "next/link";
-import { navItems, siteConfig } from "@/content/site";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export function Footer() {
+  const { copy } = useLanguage();
+
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <h2>{siteConfig.shortName}</h2>
-          <p>
-            A polished campaign website built for residents, supporters, volunteers, and public
-            updates.
-          </p>
-          <span className="disclaimer">{siteConfig.paidFor}</span>
+          <h2>{copy.siteConfig.shortName}</h2>
+          <p>{copy.footer.body}</p>
+          <span className="disclaimer">{copy.siteConfig.paidFor}</span>
         </div>
         <div>
-          <h3>Navigation</h3>
-          <nav aria-label="Footer navigation">
-            {navItems.map((item) => (
+          <h3>{copy.footer.navigationHeading}</h3>
+          <nav aria-label={copy.footer.footerNavigationLabel}>
+            {copy.navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>
@@ -24,11 +25,11 @@ export function Footer() {
           </nav>
         </div>
         <div>
-          <h3>Take Action</h3>
-          <nav aria-label="Campaign action links">
-            <Link href="/donate">Contribute</Link>
-            <Link href="/volunteer">Volunteer</Link>
-            <Link href="/news">Campaign Updates</Link>
+          <h3>{copy.footer.actionHeading}</h3>
+          <nav aria-label={copy.footer.actionLinksLabel}>
+            <Link href="/donate">{copy.footer.contribute}</Link>
+            <Link href="/volunteer">{copy.footer.volunteer}</Link>
+            <Link href="/news">{copy.footer.updates}</Link>
           </nav>
         </div>
       </div>

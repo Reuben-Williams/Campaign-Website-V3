@@ -8,11 +8,10 @@ import {
   PrioritiesSection,
   VolunteerSection,
 } from "@/components/Sections";
-import { pages } from "@/content/site";
 
 export default function HomePage() {
   return (
-    <PageTemplate page={pages.home}>
+    <PageTemplate pageKey="home">
       <PrioritiesSection />
       <AboutSection />
       <EventsSection />

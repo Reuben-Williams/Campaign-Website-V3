@@ -47,7 +47,8 @@ test("deployment environment variables are documented", async () => {
 test("shared navigation includes a dedicated home link first", async () => {
   const siteContent = await readProjectFile("content/site.ts");
 
-  assert.match(siteContent, /export const navItems = \[\s*\{\s*label:\s*["']Home["'],\s*href:\s*["']\/["']\s*\}/s);
+  assert.match(siteContent, /navItems:\s*\[\s*\{\s*label:\s*["']Home["'],\s*href:\s*["']\/["']\s*\}/s);
+  assert.match(siteContent, /export const navItems = siteCopy\.en\.navItems/);
 });
 
 test("source files use local campaign images instead of remote placeholders", async () => {
@@ -101,4 +102,22 @@ test("public source copy avoids internal platform and staging language", async (
   const blockedWords = ["de" + "mo", "git" + "hub", "ver" + "cel", "supa" + "base"];
   const blockedPattern = new RegExp(`\\b(${blockedWords.join("|")})\\b`, "i");
   assert.doesNotMatch(combined, blockedPattern);
+});
+
+test("site content includes Spanish translations for shared navigation and page copy", async () => {
+  const siteContent = await readProjectFile("content/site.ts");
+
+  assert.match(siteContent, /siteCopy/);
+  assert.match(siteContent, /Espa(?:ñ|n)ol/);
+  assert.match(siteContent, /Inicio/);
+  assert.match(siteContent, /Voluntariado/);
+  assert.match(siteContent, /Prioridades de campaña/);
+});
+
+test("shared header exposes a language toggle for desktop and mobile navigation", async () => {
+  const header = await readProjectFile("components/Header.tsx");
+
+  assert.match(header, /LanguageToggle/);
+  assert.match(header, /desktop-language-toggle/);
+  assert.match(header, /mobile-language-toggle/);
 });

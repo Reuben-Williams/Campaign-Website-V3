@@ -13,6 +13,7 @@ type HeroProps = {
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  caption: string;
 };
 
 export function Hero({
@@ -24,6 +25,7 @@ export function Hero({
   primaryLabel = "Volunteer",
   secondaryHref = "/donate",
   secondaryLabel = "Donate",
+  caption,
 }: HeroProps) {
   return (
     <section className="hero">
@@ -43,7 +45,7 @@ export function Hero({
         </div>
         <div className="hero-media">
           <CampaignImage image={image} priority sizes="(max-width: 960px) 100vw, 42vw" />
-          <div className="media-caption">Local campaign photography now powers the site.</div>
+          <div className="media-caption">{caption}</div>
         </div>
       </div>
     </section>

@@ -1,15 +1,20 @@
-import { Hero } from "@/components/Hero";
-import { SiteShell } from "@/components/SiteShell";
-import type { pages } from "@/content/site";
+"use client";
 
-type PageKey = keyof typeof pages;
+import { Hero } from "@/components/Hero";
+import { useLanguage } from "@/components/LanguageProvider";
+import { SiteShell } from "@/components/SiteShell";
+import type { PageKey } from "@/content/site";
 
 type PageTemplateProps = {
-  page: (typeof pages)[PageKey];
+  pageKey: PageKey;
   children: React.ReactNode;
 };
 
-export function PageTemplate({ page, children }: PageTemplateProps) {
+export function PageTemplate({ pageKey, children }: PageTemplateProps) {
+  const { copy } = useLanguage();
+  const page = copy.pages[pageKey];
+  const image = copy.images[page.image];
+
   return (
     <SiteShell>
       <main className="route-page">
@@ -17,7 +22,10 @@ export function PageTemplate({ page, children }: PageTemplateProps) {
           eyebrow={page.eyebrow}
           heading={page.heading}
           body={page.body}
-          image={page.image}
+          image={image}
+          caption={copy.sections.heroCaption}
+          primaryLabel={copy.footer.volunteer}
+          secondaryLabel={copy.labels.donate}
         />
         {children}
       </main>

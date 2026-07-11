@@ -1,29 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { CampaignImage } from "@/components/CampaignImage";
-import {
-  donationAmounts,
-  endorsements,
-  events,
-  images,
-  news,
-  priorities,
-  volunteerRoles,
-} from "@/content/site";
+import { useLanguage } from "@/components/LanguageProvider";
+import { donationAmounts } from "@/content/site";
 
 export function PrioritiesSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.priorities;
+
   return (
     <section className="section">
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">Campaign priorities</p>
-          <h2>Focused on the everyday work residents can feel.</h2>
-          <p>
-            These issue areas keep the campaign message clear, local, and easy for residents to
-            scan.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p>{section.body}</p>
         </div>
         <div className="priority-grid">
-          {priorities.map((priority) => (
+          {copy.priorities.map((priority) => (
             <article className="card priority-card" key={priority.title}>
               <span className="label">{priority.label}</span>
               <h3>{priority.title}</h3>
@@ -37,26 +32,25 @@ export function PrioritiesSection() {
 }
 
 export function AboutSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.about;
+
   return (
     <section className="section section-muted">
       <div className="container split">
         <div className="media-frame">
-          <CampaignImage image={images.community} sizes="(max-width: 960px) 100vw, 44vw" />
+          <CampaignImage image={copy.images.community} sizes="(max-width: 960px) 100vw, 44vw" />
         </div>
         <div>
-          <p className="eyebrow">About Carmen</p>
-          <h2>Visible, accessible, and present in the district.</h2>
-          <p className="lede">
-            The original static export used generated political stock scenes. This version uses
-            the real campaign photo set already in the workspace so the site feels specific to
-            Carmen Morales from the first screen.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p className="lede">{section.body}</p>
           <div className="hero-actions">
             <Link className="button button-secondary" href="/about">
-              Read Bio
+              {section.readBio}
             </Link>
             <Link className="button button-outline" href="/events">
-              Attend Event
+              {section.attendEvent}
             </Link>
           </div>
         </div>
@@ -66,17 +60,20 @@ export function AboutSection() {
 }
 
 export function EventsSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.events;
+
   return (
     <section className="section">
       <div className="container split">
         <div>
           <div className="section-head">
-            <p className="eyebrow">Events</p>
-            <h2>Organizing calendar</h2>
-            <p>Use this area for real campaign events once dates are confirmed.</p>
+            <p className="eyebrow">{section.eyebrow}</p>
+            <h2>{section.heading}</h2>
+            <p>{section.body}</p>
           </div>
           <div className="timeline">
-            {events.map((event) => (
+            {copy.events.map((event) => (
               <article className="card event-card" key={event.title}>
                 <div className="event-date">
                   <div>
@@ -96,7 +93,7 @@ export function EventsSection() {
           </div>
         </div>
         <div className="media-frame">
-          <CampaignImage image={images.listening} sizes="(max-width: 960px) 100vw, 44vw" />
+          <CampaignImage image={copy.images.listening} sizes="(max-width: 960px) 100vw, 44vw" />
         </div>
       </div>
     </section>
@@ -104,19 +101,19 @@ export function EventsSection() {
 }
 
 export function DonateSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.donate;
+
   return (
     <section className="section section-muted">
       <div className="container split">
         <div>
-          <p className="eyebrow">Donate</p>
-          <h2>Ready for a real contribution provider later.</h2>
-          <p className="lede">
-            This page keeps contribution controls informational until the campaign selects its
-            final compliance and payment provider.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p className="lede">{section.body}</p>
         </div>
         <div className="donate-panel">
-          <h3>Choose an amount</h3>
+          <h3>{section.chooseAmount}</h3>
           <div className="amount-grid">
             {donationAmounts.map((amount) => (
               <button className="amount" key={amount} type="button">
@@ -124,9 +121,9 @@ export function DonateSection() {
               </button>
             ))}
           </div>
-          <p>Contribution processing is intentionally disabled until the provider is selected.</p>
+          <p>{section.disabled}</p>
           <Link className="button button-primary" href="/volunteer">
-            Help Another Way
+            {section.helpAnotherWay}
           </Link>
         </div>
       </div>
@@ -135,21 +132,21 @@ export function DonateSection() {
 }
 
 export function EndorsementsSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.endorsements;
+
   return (
     <section className="section">
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">Endorsements</p>
-          <h2>Support that can grow into a verified endorsements page.</h2>
-          <p>
-            This page lists endorsement categories until the campaign confirms the final public
-            names, logos, and approval language.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p>{section.body}</p>
         </div>
         <div className="endorsement-grid">
-          {endorsements.map((endorsement) => (
+          {copy.endorsements.map((endorsement) => (
             <article className="card endorsement-card" key={endorsement}>
-              <span className="label">Supporter</span>
+              <span className="label">{section.label}</span>
               <h3>{endorsement}</h3>
             </article>
           ))}
@@ -160,16 +157,19 @@ export function EndorsementsSection() {
 }
 
 export function NewsSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.news;
+
   return (
     <section className="section section-muted">
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">News</p>
-          <h2>Campaign updates</h2>
-          <p>Campaign update cards are ready for confirmed announcements and publishing workflows.</p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p>{section.body}</p>
         </div>
         <div className="news-grid">
-          {news.map((item) => (
+          {copy.news.map((item) => (
             <article className="card news-card" key={item.title}>
               <span className="label">{item.date}</span>
               <h3>{item.title}</h3>
@@ -183,21 +183,21 @@ export function NewsSection() {
 }
 
 export function VolunteerSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.volunteer;
+
   return (
     <section className="section">
       <div className="container split">
         <div className="media-frame">
-          <CampaignImage image={images.literature} sizes="(max-width: 960px) 100vw, 44vw" />
+          <CampaignImage image={copy.images.literature} sizes="(max-width: 960px) 100vw, 44vw" />
         </div>
         <div>
-          <p className="eyebrow">Volunteer</p>
-          <h2>Build the field program one conversation at a time.</h2>
-          <p className="lede">
-            The form below shows the intended supporter experience and can connect to the
-            campaign's selected intake workflow later.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p className="lede">{section.body}</p>
           <div className="role-grid">
-            {volunteerRoles.map((role) => (
+            {copy.volunteerRoles.map((role) => (
               <div className="card role-card" key={role}>
                 <strong>{role}</strong>
               </div>
@@ -210,26 +210,27 @@ export function VolunteerSection() {
 }
 
 export function VolunteerFormSection() {
+  const { copy } = useLanguage();
+  const section = copy.sections.volunteerForm;
+
   return (
     <section className="section section-muted">
       <div className="container split">
         <div>
-          <p className="eyebrow">Sign up</p>
-          <h2>Volunteer interest form</h2>
-          <p className="lede">
-            These fields show the intended experience without collecting supporter data yet.
-          </p>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.heading}</h2>
+          <p className="lede">{section.body}</p>
         </div>
-        <form className="card priority-card" aria-label="Volunteer interest form">
+        <form className="card priority-card" aria-label={section.formLabel}>
           <div className="form-grid">
-            <input className="field" aria-label="First name" type="text" value="" readOnly />
-            <input className="field" aria-label="Last name" type="text" value="" readOnly />
-            <input className="field" aria-label="Email address" type="email" value="" readOnly />
-            <input className="field" aria-label="Phone number" type="tel" value="" readOnly />
+            <input className="field" aria-label={section.firstName} type="text" value="" readOnly />
+            <input className="field" aria-label={section.lastName} type="text" value="" readOnly />
+            <input className="field" aria-label={section.email} type="email" value="" readOnly />
+            <input className="field" aria-label={section.phone} type="tel" value="" readOnly />
           </div>
-          <p>Submissions can be wired to the campaign's intake workflow once it is selected.</p>
+          <p>{section.note}</p>
           <button className="button button-primary" type="button">
-            Submit Interest
+            {section.submit}
           </button>
         </form>
       </div>
@@ -238,11 +239,13 @@ export function VolunteerFormSection() {
 }
 
 export function WidePhotoSection() {
+  const { copy } = useLanguage();
+
   return (
     <section className="section">
       <div className="container">
         <div className="wide-photo">
-          <CampaignImage image={images.table} sizes="100vw" />
+          <CampaignImage image={copy.images.table} sizes="100vw" />
         </div>
       </div>
     </section>

@@ -2,21 +2,38 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { navItems, siteConfig } from "@/content/site";
+import { useLanguage } from "@/components/LanguageProvider";
+
+function LanguageToggle({ className = "" }: { className?: string }) {
+  const { copy, language, toggleLanguage } = useLanguage();
+
+  return (
+    <button
+      className={`language-toggle ${className}`.trim()}
+      type="button"
+      aria-label={copy.labels.languageAria}
+      aria-pressed={language === "es"}
+      onClick={toggleLanguage}
+    >
+      {copy.labels.languageSwitch}
+    </button>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { copy } = useLanguage();
 
   return (
     <header className="topbar">
       <div className="container topbar-inner">
-        <Link className="brand" href="/" aria-label={`${siteConfig.shortName} home`}>
-          {siteConfig.name}
-          <span>{siteConfig.office}</span>
+        <Link className="brand" href="/" aria-label={copy.labels.brandHome}>
+          {copy.siteConfig.name}
+          <span>{copy.siteConfig.office}</span>
         </Link>
 
-        <nav className="desktop-nav" aria-label="Main navigation">
-          {navItems.map((item) => (
+        <nav className="desktop-nav" aria-label={copy.labels.mainNavigation}>
+          {copy.navItems.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
@@ -24,31 +41,33 @@ export function Header() {
         </nav>
 
         <div className="nav-actions">
+          <LanguageToggle className="desktop-language-toggle" />
           <Link className="button button-outline" href="/donate">
-            Donate
+            {copy.labels.donate}
           </Link>
           <button
             className="menu-button"
             type="button"
-            aria-label="Toggle navigation"
+            aria-label={copy.labels.mobileNavigation}
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
           >
-            {open ? "Close" : "Menu"}
+            {open ? copy.labels.close : copy.labels.menu}
           </button>
         </div>
       </div>
 
       {open ? (
         <div className="container mobile-nav">
-          <nav aria-label="Mobile navigation">
-            {navItems.map((item) => (
+          <nav aria-label={copy.labels.mobileNavigation}>
+            <LanguageToggle className="mobile-language-toggle" />
+            {copy.navItems.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                 {item.label}
               </Link>
             ))}
             <Link href="/donate" onClick={() => setOpen(false)}>
-              Donate
+              {copy.labels.donate}
             </Link>
           </nav>
         </div>
