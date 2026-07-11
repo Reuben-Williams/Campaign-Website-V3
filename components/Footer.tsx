@@ -8,8 +8,8 @@ export function Footer() {
         <div>
           <h2>{siteConfig.shortName}</h2>
           <p>
-            A demo-ready campaign website prepared for GitHub Pages today, with a clean path
-            toward Vercel hosting and Supabase-backed features later.
+            A polished campaign website built for residents, supporters, volunteers, and public
+            updates.
           </p>
           <span className="disclaimer">{siteConfig.paidFor}</span>
         </div>
@@ -24,10 +24,10 @@ export function Footer() {
           </nav>
         </div>
         <div>
-          <h3>Demo Setup</h3>
-          <nav aria-label="Deployment links">
-            <Link href="/donate">Contribution Demo</Link>
-            <Link href="/volunteer">Volunteer Demo</Link>
+          <h3>Take Action</h3>
+          <nav aria-label="Campaign action links">
+            <Link href="/donate">Contribute</Link>
+            <Link href="/volunteer">Volunteer</Link>
             <Link href="/news">Campaign Updates</Link>
           </nav>
         </div>

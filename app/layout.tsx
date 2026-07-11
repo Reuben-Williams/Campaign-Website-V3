@@ -8,9 +8,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.description,
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://reuben-williams.github.io/Campaign-Website-V3",
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"),
 };
 
 export default function RootLayout({

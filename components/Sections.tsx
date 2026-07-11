@@ -18,8 +18,8 @@ export function PrioritiesSection() {
           <p className="eyebrow">Campaign priorities</p>
           <h2>Focused on the everyday work residents can feel.</h2>
           <p>
-            These issue areas mirror the structure of the original campaign export while using
-            clearer, locally grounded content for the owner demo.
+            These issue areas keep the campaign message clear, local, and easy for residents to
+            scan.
           </p>
         </div>
         <div className="priority-grid">
@@ -48,7 +48,7 @@ export function AboutSection() {
           <h2>Visible, accessible, and present in the district.</h2>
           <p className="lede">
             The original static export used generated political stock scenes. This version uses
-            the real campaign photo set already in the workspace so the demo feels specific to
+            the real campaign photo set already in the workspace so the site feels specific to
             Carmen Morales from the first screen.
           </p>
           <div className="hero-actions">
@@ -111,8 +111,8 @@ export function DonateSection() {
           <p className="eyebrow">Donate</p>
           <h2>Ready for a real contribution provider later.</h2>
           <p className="lede">
-            This demo keeps contribution controls static for GitHub Pages. When the production
-            stack is ready, this page can connect to the selected compliance and payment provider.
+            This page keeps contribution controls informational until the campaign selects its
+            final compliance and payment provider.
           </p>
         </div>
         <div className="donate-panel">
@@ -124,7 +124,7 @@ export function DonateSection() {
               </button>
             ))}
           </div>
-          <p>Contribution processing is intentionally disabled in this GitHub Pages demo.</p>
+          <p>Contribution processing is intentionally disabled until the provider is selected.</p>
           <Link className="button button-primary" href="/volunteer">
             Help Another Way
           </Link>
@@ -142,7 +142,7 @@ export function EndorsementsSection() {
           <p className="eyebrow">Endorsements</p>
           <h2>Support that can grow into a verified endorsements page.</h2>
           <p>
-            This demo lists endorsement categories until the campaign confirms the final public
+            This page lists endorsement categories until the campaign confirms the final public
             names, logos, and approval language.
           </p>
         </div>
@@ -166,7 +166,7 @@ export function NewsSection() {
         <div className="section-head">
           <p className="eyebrow">News</p>
           <h2>Campaign updates</h2>
-          <p>Static news cards for the GitHub Pages demo, ready to become Supabase content later.</p>
+          <p>Campaign update cards are ready for confirmed announcements and publishing workflows.</p>
         </div>
         <div className="news-grid">
           {news.map((item) => (
@@ -193,8 +193,8 @@ export function VolunteerSection() {
           <p className="eyebrow">Volunteer</p>
           <h2>Build the field program one conversation at a time.</h2>
           <p className="lede">
-            The form below can stay static on GitHub Pages, then submit to Supabase or a campaign
-            CRM when the production stack is selected.
+            The form below shows the intended supporter experience and can connect to the
+            campaign's selected intake workflow later.
           </p>
           <div className="role-grid">
             {volunteerRoles.map((role) => (
@@ -215,9 +215,9 @@ export function VolunteerFormSection() {
       <div className="container split">
         <div>
           <p className="eyebrow">Sign up</p>
-          <h2>Static demo form</h2>
+          <h2>Volunteer interest form</h2>
           <p className="lede">
-            These fields show the intended experience without collecting data on GitHub Pages.
+            These fields show the intended experience without collecting supporter data yet.
           </p>
         </div>
         <form className="card priority-card" aria-label="Volunteer interest form">
@@ -227,9 +227,9 @@ export function VolunteerFormSection() {
             <input className="field" aria-label="Email address" type="email" value="" readOnly />
             <input className="field" aria-label="Phone number" type="tel" value="" readOnly />
           </div>
-          <p>Production submission can be wired to Supabase once the project is created.</p>
+          <p>Submissions can be wired to the campaign's intake workflow once it is selected.</p>
           <button className="button button-primary" type="button">
-            Demo Submit
+            Submit Interest
           </button>
         </form>
       </div>

@@ -181,7 +181,7 @@ export const pages = {
     title: "News",
     eyebrow: "Campaign updates",
     heading: "Latest updates from the trail.",
-    body: "Follow organizing updates, event announcements, and campaign news as the demo site grows.",
+    body: "Follow organizing updates, event announcements, and campaign news as the site grows.",
     image: images.portrait,
   },
   volunteer: {

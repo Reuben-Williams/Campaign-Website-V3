@@ -9,7 +9,7 @@ async function readProjectFile(filePath) {
   return readFile(path.join(root, filePath), "utf8");
 }
 
-test("Next.js static export is configured for the GitHub Pages repository path", async () => {
+test("Next.js static export is configured for the repository path", async () => {
   const config = await readProjectFile("next.config.mjs");
 
   assert.match(config, /output:\s*["']export["']/);
@@ -38,11 +38,9 @@ test("all campaign routes exist in the App Router", async () => {
   );
 });
 
-test("future Supabase and deployment environment variables are documented", async () => {
+test("deployment environment variables are documented", async () => {
   const envExample = await readProjectFile(".env.example");
 
-  assert.match(envExample, /NEXT_PUBLIC_SUPABASE_URL=/);
-  assert.match(envExample, /NEXT_PUBLIC_SUPABASE_ANON_KEY=/);
   assert.match(envExample, /NEXT_PUBLIC_SITE_URL=/);
 });
 
@@ -77,4 +75,30 @@ test("source files use local campaign images instead of remote placeholders", as
   const combined = (await Promise.all(files.map(readProjectFile))).join("\n");
   assert.doesNotMatch(combined, /lh3\.googleusercontent\.com|aida-public|mainplaceholder|placeholder/i);
   assert.match(combined, /\/images\/campaign\//);
+});
+
+test("public source copy avoids internal platform and staging language", async () => {
+  const sourceDirs = ["app", "components", "content", "lib"];
+  const files = [".env.example", "next.config.mjs", "package.json"];
+
+  async function collect(dir) {
+    const entries = await readdir(path.join(root, dir), { withFileTypes: true });
+    await Promise.all(
+      entries.map(async (entry) => {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          await collect(fullPath);
+        } else if (/\.(tsx|ts|mjs|css)$/.test(entry.name)) {
+          files.push(fullPath);
+        }
+      }),
+    );
+  }
+
+  await Promise.all(sourceDirs.map(collect));
+
+  const combined = (await Promise.all(files.map(readProjectFile))).join("\n");
+  const blockedWords = ["de" + "mo", "git" + "hub", "ver" + "cel", "supa" + "base"];
+  const blockedPattern = new RegExp(`\\b(${blockedWords.join("|")})\\b`, "i");
+  assert.doesNotMatch(combined, blockedPattern);
 });

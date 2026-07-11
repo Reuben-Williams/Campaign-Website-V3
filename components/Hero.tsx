@@ -43,7 +43,7 @@ export function Hero({
         </div>
         <div className="hero-media">
           <CampaignImage image={image} priority sizes="(max-width: 960px) 100vw, 42vw" />
-          <div className="media-caption">Local campaign photography now powers the demo.</div>
+          <div className="media-caption">Local campaign photography now powers the site.</div>
         </div>
       </div>
     </section>

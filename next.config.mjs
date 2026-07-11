@@ -1,6 +1,6 @@
 const repoName = "Campaign-Website-V3";
-const isGithubPages = process.env.GITHUB_PAGES !== "false";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (isGithubPages ? `/${repoName}` : "");
+const usesProjectBasePath = process.env.PROJECT_SITE_BASE_PATH !== "false";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? (usesProjectBasePath ? `/${repoName}` : "");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
